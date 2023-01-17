@@ -6,6 +6,9 @@ import { AnimatePresence } from "framer-motion";
 import Hero from "./Hero";
 import Grid from "@mui/material/Unstable_Grid2";
 import { useState, useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { cursorState } from "./State";
+
 
 const C = {
   container: css({
@@ -40,9 +43,20 @@ const C = {
 };
 
 const Land = () => {
+  const [cursorVariant, setCursorVariant] = useRecoilState(cursorState);
+  const [active, setActive] = useState(0);
+
+  const Enter = (index) => {
+    setActive(index);
+    setCursorVariant("heading");
+  };
+  const Leave = () => {
+    setActive(0);
+    setCursorVariant("default");
+  };
+
   const { height, width } = useWindowDimensions();
 
-  console.log(width);
   return (
     <div css={C.container}>
       <Grid container height="auto">

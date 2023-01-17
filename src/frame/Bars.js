@@ -2,11 +2,14 @@
 import { css } from "@emotion/react";
 import Grid from "@mui/material/Unstable_Grid2";
 import { useDim } from "../hooks/useDim";
+
+import { useRecoilState } from "recoil";
+import { cursorState } from "./State";
+import { useState } from "react";
+
 const C = {
   container: css({
     width: "100%",
-    // border: "1px solid green",
-
     maxWidth: "1000px",
     margin: "60px auto 20px auto",
     color: "#fff",
@@ -25,17 +28,21 @@ const C = {
     width: "min-content",
     borderRadius: "20px",
     padding: "24px",
+    transition: "outline-width 100ms ease-in-out",
 
     "@media (max-width: 900px)": {
       width: "100%",
     },
   }),
   heading: css({
-    margin: "0 auto 20px auto",
+    margin: "0 auto 20px 0",
+    // marginRight: "auto",
     fontSize: "35px",
     fontFamily: "gil",
     fontWeight: 700,
     color: "#fff",
+    cursor: "none",
+    width: "min-content",
     textDecoration: "underline",
   }),
   inner: css({
@@ -61,15 +68,58 @@ const C = {
 };
 
 const Me = () => {
+  const [cursorVariant, setCursorVariant] = useRecoilState(cursorState);
+  const [active, setActive] = useState(0);
+
+
+
+  
   const { height, width } = useDim();
+
+  const Enter = (index) => {
+    setActive(index);
+    setCursorVariant("heading");
+  };
+  const Leave = () => {
+    setActive(0);
+    setCursorVariant("default");
+  };
 
   return (
     <div css={C.container}>
-      <div css={C.heading}>Work History</div>
+      <div
+        css={C.heading}
+        style={
+          active === 4
+            ? { textDecorationColor: "#14cf93" }
+            : { textDecorationColor: "#fff" }
+        }
+        onMouseEnter={() => {
+          Enter(4);
+        }}
+        onMouseLeave={() => {
+          Leave();
+        }}
+      >
+        Work History
+      </div>
       <Grid container spacing={2}>
         <Grid md css={{ padding: "0px" }} />
         <Grid xs={12} md="auto">
-          <div css={C.box}>
+          <div
+            css={C.box}
+            style={
+              active === 1
+                ? { outline: "2px solid #14cf93" }
+                : { outline: "0px solid #14cf93" }
+            }
+            onMouseEnter={() => {
+              Enter(1);
+            }}
+            onMouseLeave={() => {
+              Leave();
+            }}
+          >
             <div css={C.inner}>
               <div>
                 <div css={C.title}>Retail Business Services</div>
@@ -84,7 +134,20 @@ const Me = () => {
 
         <Grid md={2} css={{ padding: "0px" }} />
         <Grid xs={12} md>
-          <div css={C.box}>
+          <div
+            css={C.box}
+            style={
+              active === 2
+                ? { outline: "2px solid #14cf93" }
+                : { outline: "0px solid #14cf93" }
+            }
+            onMouseEnter={() => {
+              Enter(2);
+            }}
+            onMouseLeave={() => {
+              Leave();
+            }}
+          >
             <div css={C.inner}>
               <div>
                 <div css={C.title}>Voya Financial</div>
@@ -96,7 +159,20 @@ const Me = () => {
         </Grid>
 
         <Grid xs={12} md={11}>
-          <div css={[C.box, { width: "100%" }]}>
+          <div
+            style={
+              active === 3
+                ? { outline: "2px solid #14cf93" }
+                : { outline: "0px solid #14cf93" }
+            }
+            onMouseEnter={() => {
+              Enter(3);
+            }}
+            onMouseLeave={() => {
+              Leave();
+            }}
+            css={[C.box, { width: "100%" }]}
+          >
             <div css={C.inner}>
               <div css={{ flexGrow: 1 }}>
                 <div css={C.title}>

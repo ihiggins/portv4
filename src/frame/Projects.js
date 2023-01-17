@@ -1,16 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import Grid from "@mui/material/Unstable_Grid2";
-
+import { useRecoilState } from "recoil";
+import { cursorState } from "./State";
+import { useState } from "react";
 const C = {
   container: css({
     width: "100%",
-    // border: "1px solid green",
-
     maxWidth: "1000px",
     margin: "60px auto 20px auto",
     color: "#fff",
-
     "@media (max-width: 900px)": {
       maxWidth: "90%",
     },
@@ -26,11 +25,14 @@ const C = {
     borderRadius: "20px",
   }),
   heading: css({
-    margin: "0 auto 20px auto",
+    margin: "0 auto 20px 0",
+    // marginRight: "auto",
     fontSize: "35px",
     fontFamily: "gil",
     fontWeight: 700,
     color: "#fff",
+    cursor: "none",
+    width: "min-content",
     textDecoration: "underline",
   }),
   tile: css({
@@ -65,22 +67,52 @@ const C = {
   }),
   label2: css({
     fontSize: "16px",
-    fontFamily: "league spartan",
+    fontFamily: "questrial",
     fontWeight: 700,
     color: "#fff",
     marginBottom: "30px",
     width: "100%",
     textAlign: "right",
-
   }),
 };
 
 const Projects = () => {
+  const [cursorVariant, setCursorVariant] = useRecoilState(cursorState);
+  const [heading, setHeading] = useState(false);
+
+  const exptEnter = () => {
+    setCursorVariant("expt");
+  };
+  const exptLeave = () => {
+    setCursorVariant("default");
+  };
+
+  const headingEnter = () => {
+    setCursorVariant("heading");
+    setHeading(true);
+  };
+
+  const headingLeave = () => {
+    setCursorVariant("default");
+    setHeading(false);
+  };
+
   return (
     <div css={C.container}>
-      <div css={C.heading}>Projects</div>
+      <div
+        style={
+          heading
+            ? { textDecorationColor: "#14cf93" }
+            : { textDecorationColor: "#fff" }
+        }
+        css={C.heading}
+        onMouseEnter={headingEnter}
+        onMouseLeave={headingLeave}
+      >
+        Projects
+      </div>
 
-      <div css={C.tile}>
+      <div css={C.tile} onMouseEnter={exptEnter} onMouseLeave={exptLeave}>
         <div css={C.label}>Expt</div>
         <div css={C.label2}>A QUIZ ANSWERING APP</div>
 
