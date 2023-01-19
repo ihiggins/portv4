@@ -108,18 +108,14 @@ function App() {
         {preview}
       </motion.div>
 
-      {state === 0 ? <Load setState={setState} /> : null}
-      {state === 1 ? (
-        <>
-          <Nav />
+      <Load setState={setState} />
 
-          <Land />
-          <Me />
-          <Bars />
-          <Projects />
-          <Action />
-        </>
-      ) : null}
+      <Nav />
+      <Land />
+      <Me />
+      <Bars />
+      <Projects />
+      <Action />
     </div>
   );
 }

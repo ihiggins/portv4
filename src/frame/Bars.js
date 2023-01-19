@@ -20,7 +20,7 @@ const C = {
     },
     "@media (min-width: 901px)": {
       width: "95%",
-      margin: "4em auto 0",
+      margin: "8em auto 0",
     },
   }),
   box: css({
@@ -71,9 +71,6 @@ const Me = () => {
   const [cursorVariant, setCursorVariant] = useRecoilState(cursorState);
   const [active, setActive] = useState(0);
 
-
-
-  
   const { height, width } = useDim();
 
   const Enter = (index) => {
