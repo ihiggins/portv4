@@ -48,7 +48,7 @@ const C = {
 		zIndex: 100,
 		whiteSpace: 'nowrap',
 		'@media (max-width: 809px)': {
-			fontSize: 'calc(11.60714vw + 30px)',
+			fontSize: 'calc(11.60714vw + 20px)',
 		},
 		'@media (min-width: 810px)': {
 			fontSize: 'calc(12vw );',
@@ -88,6 +88,9 @@ const Land = () => {
 					css={{
 						width: '60vw !important',
 						height: 'calc(100vh - 80px) !important',
+						'@media (max-width: 809px)': {
+							width: '100vw !important',
+						},
 					}}>
 					<Suspense fallback={null}>
 						<primitive object={glb.scene} scale={1.5} />
@@ -164,7 +167,23 @@ const Land = () => {
 					</div>
 				</>
 			) : (
-				<div css={C.text}>Aspiring Junior Developer</div>
+				<>
+					<div css={C.text}>Aspiring</div>
+					<div
+						css={[
+							C.text,
+							{
+								fontFamily: 'maz',
+								color: '#14cf93',
+								fontWeight: 400,
+								textAlign: 'right',
+								marginLeft: '100px',
+							},
+						]}>
+						Junior
+					</div>
+					<div css={C.text}>Developer</div>
+				</>
 			)}
 
 			{/* <Grid container height="auto">

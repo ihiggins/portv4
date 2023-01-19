@@ -38,7 +38,10 @@ const Action = () => {
 		<div css={C.container}>
 			<div css={C.label}>Looking For a Developer?</div>
 			<div css={{ display: 'flex', justifyContent: 'center' }}>
-				<button className="action">
+				<button className="action"
+        onMouseDown={() => { window. open("Resume_Isaac_Higgins.pdf", '_blank')}}
+        
+        >
 					View My Resume
 					<span className="bar"></span>
 				</button>
