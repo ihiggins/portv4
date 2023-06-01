@@ -120,7 +120,7 @@ const Me = () => {
             <div css={C.inner}>
               <div>
                 <div css={C.title}>Retail Business Services</div>
-                <div>Full Stack Developer Coop</div>
+                <div>Full Stack Developer</div>
               </div>
               <div css={C.num}>2022</div>
             </div>

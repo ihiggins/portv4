@@ -44,6 +44,7 @@ const C = {
 		flexDirection: 'column',
 		alignItems: 'center',
 		cursor: 'pointer',
+		marginBottom: '44px',
 	}),
 
 	wrap: css({
@@ -51,6 +52,13 @@ const C = {
 		widows: '100%',
 		overflow: 'hidden',
 		borderRadius: '20px',
+		height: 'auto',
+	}),
+	wrap2: css({
+		maxWidth: '600px',
+		widows: '100%',
+		overflow: 'hidden',
+		borderRadius: '8px',
 		height: 'auto',
 	}),
 	image: css({
@@ -88,6 +96,13 @@ const Projects = () => {
 		setCursorVariant('default')
 	}
 
+	const artramEnter = () => {
+		setCursorVariant('artram')
+	}
+	const artramLeave = () => {
+		setCursorVariant('default')
+	}
+
 	const headingEnter = () => {
 		setCursorVariant('heading')
 		setHeading(true)
@@ -108,6 +123,24 @@ const Projects = () => {
 				Projects
 			</div>
 
+
+
+			<div
+				css={C.tile}
+				onMouseDown={() => {
+					window.open('https://artram.app')
+				}}
+				onMouseEnter={artramEnter}
+				onMouseLeave={artramLeave}>
+				<div css={C.label}>ARTRAM</div>
+				<div css={C.label2}>A COMMUNITY BASED FORUM</div>
+
+				<div css={C.wrap2}>
+					<img css={C.image} src="por.jpg"></img>
+				</div>
+			</div>
+
+
 			<div
 				css={C.tile}
 				onMouseDown={() => {
@@ -115,13 +148,20 @@ const Projects = () => {
 				}}
 				onMouseEnter={exptEnter}
 				onMouseLeave={exptLeave}>
-				<div css={C.label}>Expt</div>
+				<div css={C.label}>EXPT</div>
 				<div css={C.label2}>A QUIZ ANSWERING APP</div>
 
 				<div css={C.wrap}>
 					<img css={C.image} src="expt.png"></img>
 				</div>
 			</div>
+
+
+
+
+
+
+
 		</div>
 	)
 }
