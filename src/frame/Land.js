@@ -14,6 +14,12 @@ import { useGLTF } from '@react-three/drei/core'
 import { useLoader } from '@react-three/fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
+// import file from '@pmndrs/assets/hdri/city.exr'
+const file = import('@pmndrs/assets/hdri/city.exr')
+
+console.log(file)
+// const file = import('pmndrs/assets/hdri/sunset.exr')
+
 const C = {
 	container: css({
 		width: '100%',
@@ -76,7 +82,7 @@ const Land = () => {
 	}
 
 	const { height, width } = useWindowDimensions()
-	let glb = useGLTF(`${process.env.PUBLIC_URL}/scene.glb`)
+	let glb = useGLTF(`/scene.glb`)
 	glb.materials['Material.001'].color.setStyle('#222222')
 	glb.nodes.Light.intensity = 0
 	glb.nodes.Area.intensity = 0
@@ -94,8 +100,8 @@ const Land = () => {
 					}}>
 					<Suspense fallback={null}>
 						<primitive object={glb.scene} scale={1.5} />
+						<Environment files='venice_sunset_1k.hdr' />
 					</Suspense>
-					<Environment preset="sunset" />
 					<OrbitControls autoRotate autoRotateSpeed={0.5} enableZoom={false} enablePan={false} makeDefault />
 				</Canvas>
 			</div>
